@@ -2,6 +2,13 @@
 
 A declarative webhook transformation service that maps payment provider chargeback webhooks into Forter's normalized schema using JSONata expressions.
 
+# Key Goals
+
+- Minimize custom engineering per merchant
+- Support platform-scale integrations (one provider → many merchants)
+- Provide strong governance, validation, and auditability
+- Reduce onboarding risk for enterprise contracts
+
 ## Quick Start
 
 ### Installation
@@ -247,7 +254,7 @@ Response:
     "valid": true,
     "errors": null
   },
-  "warnings": []  // e.g., "field X is deprecated"
+  "warnings": []
 }
 ```
 
@@ -345,7 +352,7 @@ forter-mapper generate-tests --provider stripe
 ```javascript
 // Timeout protection
 const expression = jsonata(mapping, {
-  timeout: 1000, // 1 second max
+  timeout: 1000,
 });
 
 // Memory limits
@@ -358,7 +365,7 @@ if (JSON.stringify(payload).length > MAX_PAYLOAD_SIZE) {
 const MAX_EXPRESSION_LENGTH = 10000; // 10KB expression size
 ```
 
-**Runtime Isolation:**
+- **Runtime Isolation:**
 
 - Each evaluation runs in a clean context
 - No shared state between requests
@@ -503,21 +510,21 @@ Merchant Portal Workflow:
 
 #### Onboarding Efficiency
 
-| Metric                               | Target      | Why It Matters                |
-| ------------------------------------ | ----------- | ----------------------------- |
-| **Time to first successful mapping** | < 5 minutes | Measures UX friction          |
-| **Self-service completion rate**     | > 80%       | % who go live without support |
-| **Engineering escalation rate**      | < 20%       | % requiring custom work       |
-| **Average onboarding time**          | < 24 hours  | Speed to revenue              |
+| Metric                               | Example Target | Why It Matters                |
+| ------------------------------------ | -------------- | ----------------------------- |
+| **Time to first successful mapping** | < 5 minutes    | Measures UX friction          |
+| **Self-service completion rate**     | > 80%          | % who go live without support |
+| **Engineering escalation rate**      | < 20%          | % requiring custom work       |
+| **Average onboarding time**          | < 24 hours     | Speed to revenue              |
 
 #### System Health
 
-| Metric                   | Target     | Alert Threshold          |
-| ------------------------ | ---------- | ------------------------ |
-| **Mapping success rate** | > 99%      | < 95%                    |
-| **Validation pass rate** | > 95%      | < 90%                    |
-| **P99 latency**          | < 100ms    | > 500ms                  |
-| **Provider coverage**    | All top 10 | Missing provider request |
+| Metric                   | Example Target | Alert Threshold          |
+| ------------------------ | -------------- | ------------------------ |
+| **Mapping success rate** | > 99%          | < 95%                    |
+| **Validation pass rate** | > 95%          | < 90%                    |
+| **P99 latency**          | < 100ms        | > 500ms                  |
+| **Provider coverage**    | All top 10     | Missing provider request |
 
 #### Business Impact
 
@@ -561,7 +568,7 @@ Last 30 Days:
 
 ## 5. Future Enhancements & Roadmap
 
-### Phase 1: Foundation (Weeks 1-4) ✅ COMPLETE
+### Phase 1: Foundation
 
 - ✓ Core JSONata transformation engine
 - ✓ Schema validation
@@ -569,7 +576,7 @@ Last 30 Days:
 - ✓ Basic error handling
 - ✓ Unit tests
 
-### Phase 2: Extensibility (Weeks 5-8)
+### Phase 2: Extensibility
 
 **Goal: Support top 5 payment providers**
 
@@ -577,7 +584,7 @@ Last 30 Days:
 
 - [ ] Provider registry pattern implementation
 - [ ] PayPal mapping
-- [ ] Adyen mapping
+- [ ] Adyen / other provider mappings
 - [ ] Auto-discovery of provider files
 - [ ] Provider-specific test suites
 
@@ -594,7 +601,7 @@ Last 30 Days:
 - < 30 min to add new provider
 - 95% test coverage
 
-### Phase 3: Self-Service (Weeks 9-12)
+### Phase 3: Self-Service
 
 **Goal: Merchants can onboard without engineering**
 
@@ -612,7 +619,7 @@ Last 30 Days:
 - < 1 hour average onboarding time
 - < 5% support escalation rate
 
-### Phase 4: Enterprise Scale (Months 4-6)
+### Phase 4: Enterprise Scale
 
 **Goal: Production-grade reliability and governance**
 
@@ -629,7 +636,7 @@ Last 30 Days:
 - [ ] Rate limiting
 - [ ] Circuit breakers
 - [ ] Monitoring and alerting
-- [ ] Performance optimization (caching)
+- [ ] Caching
 - [ ] Multi-region deployment
 
 **Metrics to Hit:**
@@ -648,7 +655,6 @@ Last 30 Days:
 - Webhook enrichment (add merchant metadata)
 - Real-time webhook replay for testing
 - ML-powered anomaly detection
-- Multi-webhook aggregation (combine dispute + refund)
 
 ### Decision Criteria for Next Steps
 
@@ -671,19 +677,6 @@ After Phase 1, I would decide next steps based on:
 - What's the error rate in production?
 - Are there performance bottlenecks?
 - How much manual support is required?
-
-**Example Decision Tree:**
-
-```
-If (self-service rate < 60%):
-  → Prioritize Web UI and documentation
-Else If (provider requests > 5/month):
-  → Prioritize provider marketplace
-Else If (enterprise customers > 30%):
-  → Prioritize versioning and governance
-Else:
-  → Optimize for scale and performance
-```
 
 ### Long-term Vision (12-24 months)
 
