@@ -1,0 +1,7 @@
+{
+  "transaction_id": data.object.charge,
+  "reason": data.object.reason,
+  "currency": $uppercase(data.object.currency),
+  "amount": data.object.amount / 100,
+  "provider": "stripe"
+}

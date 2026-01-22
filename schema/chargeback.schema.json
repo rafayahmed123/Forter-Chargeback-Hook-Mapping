@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "required": ["transaction_id", "reason", "currency", "amount"],
+  "properties": {
+    "transaction_id": { "type": "string" },
+    "reason": { "type": "string" },
+    "currency": { "type": "string" },
+    "amount": { "type": "number" },
+    "provider": { "type": "string" }
+  }
+}
