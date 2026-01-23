@@ -297,7 +297,6 @@ Webhook Mapping Tester
 - Real-time validation as they type
 - Library of sample webhooks per provider
 - "Quick Start" templates for common providers
-- Export test case as curl command or unit test
 
 ### Layer 3: CLI Tool for Engineers
 
@@ -468,7 +467,7 @@ Output:
 
 ### Current Merchant Onboarding Pain Points
 
-**Traditional Approach:**
+**Traditional Approach With Example Timeframes:**
 
 1. Merchant sends webhook samples → 2 days
 2. Engineering writes custom mapping → 3-5 days
@@ -557,16 +556,11 @@ Last 30 Days:
 └─ 3 new provider requests (Klarna, Afterpay, Affirm)
 ```
 
-**3. Success Playbook**
-
-- Automatically generated documentation per provider
-- Sample webhook library
-- Common pitfalls and solutions
-- Video tutorials
-
 ---
 
 ## 5. Future Enhancements & Roadmap
+
+**Goal: Establish a production-ready foundation for fast provider webhook onboarding**
 
 ### Phase 1: Foundation
 
@@ -580,7 +574,7 @@ Last 30 Days:
 
 **Goal: Support top 5 payment providers**
 
-**Week 5-6: Multi-Provider Support**
+**Multi-Provider Support**
 
 - [ ] Provider registry pattern implementation
 - [ ] PayPal mapping
@@ -588,7 +582,7 @@ Last 30 Days:
 - [ ] Auto-discovery of provider files
 - [ ] Provider-specific test suites
 
-**Week 7-8: Developer Tooling**
+**Developer Tooling**
 
 - [ ] `/webhook/test` endpoint for safe testing
 - [ ] Expression validation API
@@ -645,7 +639,7 @@ Last 30 Days:
 - < 50ms p99 latency
 - Support 1000+ merchants
 
-### Phase 5: Advanced Features (Month 7+)
+### Phase 5: Advanced Features
 
 **Based on merchant feedback:**
 
@@ -678,7 +672,7 @@ After Phase 1, I would decide next steps based on:
 - Are there performance bottlenecks?
 - How much manual support is required?
 
-### Long-term Vision (12-24 months)
+### Long-term Vision 
 
 **The North Star:**
 Any merchant can integrate with Forter in < 5 minutes without touching code.
